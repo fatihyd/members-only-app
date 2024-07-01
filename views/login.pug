@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  .container
+    h1 Login!
+    .form-container
+      form(method='POST' action='/login')
+        input(type='text' name='username' placeholder='Username here...')
+        br
+        br
+        input(type='password' name='password' placeholder='Password here...')
+        br
+        br
+        input(type='submit' value='Login')

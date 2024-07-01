@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  .container
+    h1 Sign Up!
+    .form-container
+      form(method='POST' action='/sign-up')
+        input(type='text' name='username' placeholder='Username here...')
+        br
+        br
+        input(type='password' name='password' placeholder='Password here...')
+        br
+        br
+        input(type='password' name='passwordConfirmation' placeholder='Password again...')
+        br
+        br
+        input(type='submit' value='Submit')
