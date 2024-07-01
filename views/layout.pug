@@ -26,5 +26,14 @@ html
               a(href='/become-member') Become a Member
             li
               a(href='/become-admin') Become an Admin
-      .content
-        block content
+    .welcomeContainer
+      if !currentUser
+        h1 Members Only!
+      else
+        h1 WELCOME BACK #{currentUser.username}
+        if currentUser.membershipStatus === "member"
+          h2 You are a MEMBER!
+        if currentUser.membershipStatus === "admin"
+          h2 You are an ADMIN!
+    .content
+      block content

@@ -1,17 +1,6 @@
 extends layout
 
 block content
-  if !currentUser
-    h1 Members Only!
-  else
-    h1 WELCOME BACK #{currentUser.username}
-    if currentUser.membershipStatus === "member"
-      h2 You are a MEMBER!
-    if currentUser.membershipStatus === "admin"
-      h2 You are an ADMIN!
-  br
-  br
-  br
   ul.messages
     each message in messages
       li.message-item
