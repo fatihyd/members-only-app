@@ -5,13 +5,26 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
     .wrapper
-      .sidebar
+      .header
         ul
           li
             a(href='/') Home
-          li
-            a(href='/sign-up') Sign Up
-          li
-            a(href='/login') Login
+          if !currentUser
+            li
+              a(href='/sign-up') Sign Up
+            li
+              a(href='/login') Login
+          else
+            li
+              a(href='/logout') Logout
+      if currentUser
+        .userLinks
+          ul
+            li
+              a(href='/create-message') New Message
+            li
+              a(href='/become-member') Become a Member
+            li
+              a(href='/become-admin') Become an Admin
       .content
         block content

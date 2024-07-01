@@ -7,7 +7,7 @@ const User = require("../models/User");
 const passport = require("passport");
 
 router.get("/", (req, res) => {
-  res.render("index", { user: req.user });
+  res.render("index");
 });
 
 router.get("/sign-up", (req, res) => {

@@ -81,6 +81,15 @@ async function main() {
 }
 
 /**
+ * --- GET ACCESS TO USER IN ALL VIEWS ---
+ */
+
+app.use((req, res, next) => {
+  res.locals.currentUser = req.user;
+  next();
+});
+
+/**
  * --- ROUTES ---
  */
 
