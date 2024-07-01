@@ -1,10 +1,10 @@
-var express = require("express");
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
 const bcrypt = require("bcryptjs");
 const { body, validationResult } = require("express-validator");
 const User = require("../models/User");
 
-var passport = require("passport");
+const passport = require("passport");
 
 router.get("/", (req, res) => {
   res.render("index", { user: req.user });
