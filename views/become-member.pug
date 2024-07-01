@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  .container
+    h1 Become a Member!
+    .form-container
+      form(method='POST' action='/become-member')
+        label(for="memberPasscode") Enter the correct passcode to become a Member:
+        input#memberPasscode(type="text" name="memberPasscode")
+        br
+        br
+        input(type='submit' value='Submit')

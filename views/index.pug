@@ -1,6 +1,24 @@
 extends layout
 
 block content
-  h1 Express app!
-  if currentUser
-      h1 WELCOME BACK #{currentUser.username}
+  if !currentUser
+    h1 Members Only!
+  else
+    h1 WELCOME BACK #{currentUser.username}
+    if currentUser.membershipStatus === "member"
+      h2 You are a MEMBER!
+    if currentUser.membershipStatus === "admin"
+      h2 You are an ADMIN!
+  br
+  br
+  br
+  ul.messages
+    each message in messages
+      li.message-item
+        if currentUser && (currentUser.membershipStatus === "member" || currentUser.membershipStatus === "admin")
+          span.message-author= message.author.username
+        p.message-text= message.text
+        small.message-timestamp= message.added
+        if currentUser && currentUser.membershipStatus === "admin"
+          form(method='POST' action=`/delete-message/${message._id}` style='display: inline;')
+            button.delete-button(type='submit') Delete

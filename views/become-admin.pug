@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  .container
+    h1 Become an Admin!
+    .form-container
+      form(method='POST' action='/become-admin')
+        label(for="adminPasscode") Enter the correct passcode to become an Admin:
+        input#adminPasscode(type="text" name="adminPasscode")
+        br
+        br
+        input(type='submit' value='Submit')
