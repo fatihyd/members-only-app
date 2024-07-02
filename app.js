@@ -7,11 +7,11 @@ const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcryptjs");
+const MongoStore = require("connect-mongo");
 const indexRouter = require("./routes/index");
 const User = require("./models/User");
 // Load environment variables
 require("dotenv").config();
-console.log(process.env);
 
 /**
  * --- GENERAL SETUP ---
@@ -34,6 +34,12 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGODB_URL,
+    }),
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24, // 24 hours
+    },
   })
 );
 app.use(passport.session());
