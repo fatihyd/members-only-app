@@ -9,6 +9,9 @@ const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcryptjs");
 const indexRouter = require("./routes/index");
 const User = require("./models/User");
+// Load environment variables
+require("dotenv").config();
+console.log(process.env);
 
 /**
  * --- GENERAL SETUP ---
@@ -26,7 +29,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 
@@ -72,9 +81,7 @@ passport.deserializeUser(async (id, done) => {
 
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
-const mongoDB =
-  "mongodb+srv://fatih:BztE4Qg8tbVTiBKk@cluster0.xmkjl9u.mongodb.net/members-only?retryWrites=true&w=majority&appName=Cluster0";
-
+const mongoDB = process.env.MONGODB_URL;
 main().catch((err) => console.log(err));
 async function main() {
   await mongoose.connect(mongoDB);
